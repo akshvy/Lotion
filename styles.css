@@ -1,0 +1,243 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#clockContainer {
+    flex: 1;
+}
+
+#clock {
+    font-size: 1.5em;
+    color: #007bff;
+    font-weight: bold;
+    text-align: left;
+}
+
+#pomodoroContainer {
+    display: flex;
+    align-items: center;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#timer {
+    font-size: 2em;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+#pomodoroControls {
+    display: flex;
+    align-items: center;
+}
+
+#pomodoroControls button,
+#newPageBtn,
+#saveNoteBtn {
+    margin-left: 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#pomodoroControls button:hover,
+#newPageBtn:hover,
+#saveNoteBtn:hover {
+    background-color: #0056b3;
+}
+
+.content-wrapper {
+    display: flex;
+    margin-top: 20px;
+}
+
+.journal-container {
+    width: 300px;
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.journal-container h2 {
+    margin-top: 0;
+}
+
+#taskContainer,
+#notesContainer {
+    flex: 1;
+    background: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#taskList,
+#notesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li,
+#notesList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#taskList li.completed {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+textarea {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s;
+    resize: none; /* Disable manual resizing */
+}
+
+textarea:focus {
+    border-color: #007bff;
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover {
+    background-color: #0056b3;
+}
+
+.theme-toggle:active {
+    transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .journal-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #pomodoroContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #ffffff;
+}
+
+header.dark-mode {
+    background: #444;
+}
+
+textarea.dark-mode {
+    background-color: #555;
+    color: #ffffff;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
