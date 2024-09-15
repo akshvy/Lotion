@@ -227,25 +227,3 @@ textarea.dark-mode {
     background-color: #555;
     color: #ffffff;
 }
-
-#graphInput {
-    width: calc(100% - 120px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-#updateGraphBtn {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#updateGraphBtn:hover {
-    background-color: #0056b3;
-}

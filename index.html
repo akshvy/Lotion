@@ -11,53 +11,50 @@
     <div class="container">
         <header>
             <h1 contenteditable="true" id="pageTitle">Focus Here</h1>
-            <button id="newPageBtn"><i class="fas fa-plus"></i> New Page</button>
-            <button id="savePageBtn"><i class="fas fa-save"></i> Save Page</button>
+            <button id="newPageBtn">New Page</button>
+            <button id="savePageBtn">Save Page</button>
         </header>
         <div class="top-container">
             <div id="clockContainer">
-                <i class="fas fa-clock" id="clockIcon"></i>
                 <div id="clock">00:00:00</div>
             </div>
             <div id="pomodoroContainer">
-                <i class="fas fa-hourglass-start" id="pomodoroIcon"></i>
                 <div id="timer">25:00</div>
                 <div id="pomodoroControls">
-                    <button id="startBtn"><i class="fas fa-play"></i></button>
-                    <button id="pauseBtn"><i class="fas fa-pause"></i></button>
-                    <button id="resetBtn"><i class="fas fa-undo"></i></button>
+                    <button id="startBtn">Start</button>
+                    <button id="pauseBtn">Pause</button>
+                    <button id="resetBtn">Reset</button>
                 </div>
             </div>
         </div>
         <div class="content-wrapper">
             <aside class="journal-container">
-                <h2><i class="fas fa-book"></i> Journal</h2>
+                <h2>Journal</h2>
                 <textarea id="journalInput" placeholder="Write your thoughts..."></textarea>
             </aside>
             <main id="mainContent">
                 <h2>Task List</h2>
                 <div id="taskContainer">
                     <input type="text" id="taskInput" placeholder="Add a new task...">
-                    <button id="addTaskBtn"><i class="fas fa-plus"></i> Add Task</button>
+                    <button id="addTaskBtn">Add Task</button>
                     <ul id="taskList"></ul>
                 </div>
                 <h2>Notes</h2>
                 <div id="notesContainer">
                     <textarea id="noteInput" placeholder="Write your notes..."></textarea>
-                    <button id="saveNoteBtn"><i class="fas fa-save"></i> Save Note</button>
+                    <button id="saveNoteBtn">Save Note</button>
                     <ul id="notesList"></ul>
                 </div>
-                <h2>Graph</h2>
-                <canvas id="graphCanvas" width="400" height="200"></canvas>
-                <div>
-                    <input type="text" id="graphInput" placeholder="Enter new graph values (comma-separated)">
-                    <button id="updateGraphBtn"><i class="fas fa-sync"></i> Update Graph</button>
+                <h2>Bulletin</h2>
+                <div id="bulletinContainer" class="draggable">
+                    <textarea id="bulletinInput" placeholder="Write your bulletin..."></textarea>
+                    <button id="saveBulletinBtn">Save Bulletin</button>
+                    <ul id="bulletinList"></ul>
                 </div>
-                <button id="saveGraphBtn"><i class="fas fa-download"></i> Save Graph Data</button>
             </main>
         </div>
         <button id="themeToggle" class="theme-toggle">
-            <i class="fas fa-adjust"></i>
+            <i class="fas fa-coffee"></i>
         </button>
     </div>
     <script src="script.js"></script>

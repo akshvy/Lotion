@@ -15,10 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const pageTitle = document.getElementById("pageTitle");
     const themeToggle = document.getElementById("themeToggle");
     
+    const bulletinInput = document.getElementById("bulletinInput");
+    const saveBulletinBtn = document.getElementById("saveBulletinBtn");
+    const bulletinList = document.getElementById("bulletinList");
     const graphCanvas = document.getElementById("graphCanvas");
     const saveGraphBtn = document.getElementById("saveGraphBtn");
-    const updateGraphBtn = document.getElementById("updateGraphBtn");
-    const graphInput = document.getElementById("graphInput");
+    const savePageBtn = document.getElementById("savePageBtn");
     let graphData = [50, 70, 30, 90, 60, 80, 40];
 
     let timerInterval;
@@ -85,11 +87,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    saveBulletinBtn.addEventListener("click", function() {
+        const bulletinText = bulletinInput.value.trim();
+        if (bulletinText) {
+            const li = document.createElement("li");
+            li.textContent = bulletinText;
+            bulletinList.appendChild(li);
+            bulletinInput.value = "";
+        }
+    });
+
     savePageBtn.addEventListener("click", function() {
         const pageTitle = document.getElementById("pageTitle").innerText;
         const journalContent = document.getElementById("journalInput").value;
         const taskListItems = Array.from(taskList.children).map(li => li.innerHTML).join('');
         const notesListItems = Array.from(notesList.children).map(li => li.innerHTML).join('');
+        const bulletinListItems = Array.from(bulletinList.children).map(li => li.innerHTML).join('');
         const currentDate = new Date().toLocaleDateString();
 
         const htmlContent = `
@@ -110,6 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 <ul>${taskListItems}</ul>
                 <h2>Notes</h2>
                 <ul>${notesListItems}</ul>
+                <h2>Bulletin</h2>
+                <ul>${bulletinListItems}</ul>
             </body>
             </html>
         `;
@@ -175,6 +190,13 @@ document.addEventListener("DOMContentLoaded", function() {
         journalInput.classList.toggle("dark-mode");
         timerDisplay.classList.toggle("dark-mode");
         
+        // Change background image based on theme
+        if (document.body.classList.contains("dark-mode")) {
+            document.body.style.backgroundImage = "url('path/to/your/dark-background.jpg')";
+        } else {
+            document.body.style.backgroundImage = "url('path/to/your/default-background.jpg')";
+        }
+
         // Add animation effect
         themeToggle.classList.add("clicked");
         setTimeout(() => {
@@ -206,62 +228,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Make all containers draggable
-    const containers = document.querySelectorAll('.journal-container, #taskContainer, #notesContainer');
-    containers.forEach(container => {
-        makeDraggable(container);
-    });
+    // Make the bulletin container draggable
+    makeDraggable(document.getElementById("bulletinContainer"));
 
-    // Function to plot graph
-    function plotGraph() {
-        const ctx = graphCanvas.getContext('2d');
-        ctx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
-        ctx.beginPath();
-        ctx.moveTo(0, graphCanvas.height - graphData[0]);
-
-        for (let i = 1; i < graphData.length; i++) {
-            ctx.lineTo(i * (graphCanvas.width / graphData.length), graphCanvas.height - graphData[i]);
-        }
-
-        ctx.strokeStyle = '#007bff';
-        ctx.stroke();
-    }
-
-    plotGraph();
-
-    saveGraphBtn.addEventListener("click", function() {
-        const blob = new Blob([JSON.stringify(graphData)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'graphData.json';
-        a.click();
-        URL.revokeObjectURL(url);
-    });
-
-    updateGraphBtn.addEventListener("click", function() {
-        const inputValues = graphInput.value.split(',').map(value => parseFloat(value.trim())).filter(value => !isNaN(value));
-        if (inputValues.length > 0) {
-            graphData = inputValues;
-            plotGraph();
-            graphInput.value = ''; // Clear input after updating
-        } else {
-            alert("Please enter valid numbers.");
-        }
-    });
-
-    // Function to auto-resize textareas
-    function autoResizeTextarea(textarea) {
-        textarea.style.height = 'auto'; // Reset height
-        textarea.style.height = textarea.scrollHeight + 'px'; // Set to scroll height
-    }
-
-    // Attach auto-resize to journal and notes textareas
-    const textareas = [journalInput, noteInput];
-    textareas.forEach(textarea => {
-        textarea.addEventListener('input', function() {
-            autoResizeTextarea(textarea);
-        });
-        autoResizeTextarea(textarea); // Initial resize
-    });
+   
 });
